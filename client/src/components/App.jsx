@@ -2,7 +2,7 @@ import React from "react";
 import Restaurants from "./Restaurants.jsx";
 import Nav from "./Nav.jsx";
 import axios from "axios";
-import config from "../config.js";
+//import config from "../config.js";
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -18,11 +18,19 @@ class App extends React.Component {
 	}
 
 	searchLocation(loc) {
-		axios.get(`https://developers.zomato.com/api/v2.1/locations?query=${loc}`, config)
+		axios.get(`https://developers.zomato.com/api/v2.1/locations?query=${loc}`, {
+			headers: {
+				"user-key": "1675e2cc12fe12dee2e8839c2ead3234"
+			}
+		})
 			.then(result => {
 				let location = result.data.location_suggestions[0];
 				console.log('location:', location)
-				axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${location.entity_id}&entity_type=${location.entity_type}`, config)
+				axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${location.entity_id}&entity_type=${location.entity_type}`, {
+					headers: {
+						"user-key": "1675e2cc12fe12dee2e8839c2ead3234"
+					}
+				})
 					.then(result => {
 						console.log('result.data:', result.data.restaurants)
 						this.setState({
