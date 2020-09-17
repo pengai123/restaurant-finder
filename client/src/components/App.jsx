@@ -7,6 +7,7 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Location from "./Location.jsx" 
 
 class App extends React.Component {
 	constructor() {
@@ -66,6 +67,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<Nav />
+				{/* <Location location={this.state.location}/> */}
 				<Grid container
 					direction="row"
 					justify="center"
@@ -91,16 +93,19 @@ class App extends React.Component {
 						</input>
 					</Grid>
 					<Grid item>
-						<Button size="small" variant="contained" onClick={this.changeLocation.bind(this)}>
+						<Button size="small" variant="contained"
+							style={{ fontWeight: "bold" }}
+							onClick={this.changeLocation.bind(this)}
+						>
 							GO!
         		</Button>
 					</Grid>
 				</Grid>
-				<Grid container 
-				direction="row"
-				justify="center"
-				alignItems="center"
-				spacing={2}>
+				<Grid container
+					direction="row"
+					justify="center"
+					alignItems="center"
+					spacing={2}>
 					<Grid container item xs={8}>
 						<Restaurants restaurants={this.state.restaurants} />
 					</Grid>

@@ -8,7 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles({
@@ -51,10 +50,8 @@ export default function Restaurants(props) {
 								/>
 							</CardActionArea>
 							<CardContent>
-								<Typography gutterBottom variant="subtitle1" >
-									<Box fontWeight="fontWeightBold">
-										{restaurant.restaurant.name}
-									</Box>
+								<Typography gutterBottom variant="subtitle1" style={{ fontWeight: "bold" }} >
+									{restaurant.restaurant.name}
 								</Typography>
 								<Grid container spacing={1}>
 									<Grid item>
@@ -67,36 +64,32 @@ export default function Restaurants(props) {
 										/>
 									</Grid>
 									<Grid item>
-										<Typography variant="caption" color="textSecondary">
+										<Typography variant="caption" color="textSecondary" style={{ color: "#" + restaurant.restaurant.user_rating.rating_color, fontWeight: "bold" }}>
 											{restaurant.restaurant.user_rating.rating_text}
 										</Typography>
 									</Grid>
 								</Grid>
 								<Grid container spacing={1}>
 									<Grid item>
-										<Typography variant="caption" color="textSecondary">
-											<Box fontWeight="fontWeightBold">
-												{displayPriceRange(restaurant.restaurant.price_range, restaurant.restaurant.currency)}
-											</Box>
+										<Typography variant="caption" style={{ color: "red", fontWeight: "bold" }}>
+											{displayPriceRange(restaurant.restaurant.price_range, restaurant.restaurant.currency)}
 										</Typography>
 									</Grid>
 									<Grid item>
-										<Typography variant="caption" color="textSecondary" noWrap>
-											<Box fontStyle="italic" fontWeight="fontWeightBold">
-												{restaurant.restaurant.cuisines}
-											</Box>
+										<Typography variant="caption" color="textSecondary" style={{ fontWeight: "bold", fontStyle: "italic" }} noWrap>
+											{restaurant.restaurant.cuisines}
 										</Typography>
 									</Grid>
 								</Grid>
 							</CardContent>
 
 							<CardActions>
-								{/* <Button size="small" color="primary">
+								<Button size="small" style={{ color: "grey", fontWeight: "bold" }}>
 									Share
         				</Button>
-								<Button size="small" color="primary">
+								<Button size="small" style={{ color: "grey", fontWeight: "bold" }}>
 									Learn More
-        				</Button> */}
+        				</Button>
 							</CardActions>
 						</Card>
 					</Grid>
