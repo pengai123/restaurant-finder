@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 	},
 });
 
+
 export default function Restaurants(props) {
 	const classes = useStyles();
 
@@ -34,10 +35,13 @@ export default function Restaurants(props) {
 
 
 	return (
-		<Grid container spacing={3}>
+		<Grid container
+			direction="row"
+			justify="center"
+			spacing={3}>
 			{props.restaurants.map((restaurant, idx) => {
 				return (
-					<Grid item xs={3} key={idx}>
+					<Grid item sm={3} xs={12} key={idx}>
 						<Card className={classes.cardRoot}>
 							<CardActionArea href={restaurant.restaurant.url} target="_blank">
 								<CardMedia
@@ -87,12 +91,12 @@ export default function Restaurants(props) {
 							</CardContent>
 
 							<CardActions>
-								<Button size="small" color="primary">
+								{/* <Button size="small" color="primary">
 									Share
         				</Button>
 								<Button size="small" color="primary">
 									Learn More
-        				</Button>
+        				</Button> */}
 							</CardActions>
 						</Card>
 					</Grid>

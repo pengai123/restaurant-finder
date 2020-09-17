@@ -66,7 +66,6 @@ class App extends React.Component {
 		return (
 			<div>
 				<Nav />
-
 				<Grid container
 					direction="row"
 					justify="center"
@@ -85,7 +84,7 @@ class App extends React.Component {
 					</Grid>
 					<Grid item>
 						<input name="newLocation"
-							placeholder="Change Location"
+							placeholder="Enter city name.."
 							style={{ height: "25px", width: "200px" }}
 							onChange={this.onChange.bind(this)}
 						>
@@ -93,17 +92,17 @@ class App extends React.Component {
 					</Grid>
 					<Grid item>
 						<Button size="small" variant="contained" onClick={this.changeLocation.bind(this)}>
-							Confirm
+							GO!
         		</Button>
 					</Grid>
 				</Grid>
-				<Grid container spacing={2}>
-					<Grid item xs={2}>
-					</Grid>
+				<Grid container 
+				direction="row"
+				justify="center"
+				alignItems="center"
+				spacing={2}>
 					<Grid container item xs={8}>
 						<Restaurants restaurants={this.state.restaurants} />
-					</Grid>
-					<Grid item xs={2}>
 					</Grid>
 				</Grid>
 			</div>
