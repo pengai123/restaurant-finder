@@ -47,17 +47,27 @@ export default function Restaurants(props) {
 								/>
 							</CardActionArea>
 							<CardContent>
-								<Rating
-									name="read-only"
-									value={Number(restaurant.restaurant.user_rating.aggregate_rating)}
-									precision={0.1}
-									readOnly 
-								/>
 								<Typography gutterBottom variant="subtitle1" >
 									<Box fontWeight="fontWeightBold">
 										{restaurant.restaurant.name}
 									</Box>
 								</Typography>
+								<Grid container spacing={1}>
+									<Grid item>
+										<Rating
+											name="read-only"
+											value={Number(restaurant.restaurant.user_rating.aggregate_rating)}
+											precision={0.1}
+											size="small"
+											readOnly
+										/>
+									</Grid>
+									<Grid item>
+										<Typography variant="caption" color="textSecondary">
+											{restaurant.restaurant.user_rating.rating_text}
+										</Typography>
+									</Grid>
+								</Grid>
 								<Grid container spacing={1}>
 									<Grid item>
 										<Typography variant="caption" color="textSecondary">

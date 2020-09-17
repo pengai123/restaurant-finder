@@ -12,7 +12,7 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			location: "Phoenix",
+			location: "",
 			restaurants: []
 		}
 	}
@@ -34,7 +34,7 @@ class App extends React.Component {
 					.then(result => {
 						console.log('result.data:', result.data.restaurants)
 						this.setState({
-							location: location.city_name,
+							location: location.title,
 							restaurants: result.data.restaurants
 						})
 					})
@@ -46,11 +46,11 @@ class App extends React.Component {
 		this.setState({
 			[e.target.name]: e.target.value
 		})
-	} 
+	}
 
-	changeLocation(e){
+	changeLocation(e) {
 		e.preventDefault();
-		if(this.state.newLocation){
+		if (this.state.newLocation) {
 			this.searchLocation(this.state.newLocation);
 		}
 	}
@@ -59,44 +59,45 @@ class App extends React.Component {
 
 	componentDidMount() {
 
-		this.searchLocation(this.state.location)
+		this.searchLocation("phoenix")
 	}
 
 	render() {
 		return (
 			<div>
 				<Nav />
-				<Grid container spacing={2}>
+
+				<Grid container
+					direction="row"
+					justify="center"
+					alignItems="center"
+					spacing={2}
+				>
 					<Grid container item
 						direction="row"
 						justify="center"
 						alignItems="center"
-						spacing={2}
 					>
-						<Grid container item 
-						direction="row" 
-						justify="center"
-						alignItems="center"
-						>
-							<LocationOnOutlinedIcon />
-							<Typography variant="subtitle1" >
-								{this.state.location}
-							</Typography>
-						</Grid>
-						<Grid item>
-							<input name="newLocation" 
-							placeholder="Change Location"
-							style={{height: "25px",width: "200px"}} 
-							onChange={this.onChange.bind(this)}
-							>
-							</input>
-						</Grid>
-						<Grid item>
-							<Button size="small" variant="contained" onClick={this.changeLocation.bind(this)}>
-								Confirm
-        		</Button>
-						</Grid>
+						<LocationOnOutlinedIcon />
+						<Typography variant="subtitle1" >
+							{this.state.location}
+						</Typography>
 					</Grid>
+					<Grid item>
+						<input name="newLocation"
+							placeholder="Change Location"
+							style={{ height: "25px", width: "200px" }}
+							onChange={this.onChange.bind(this)}
+						>
+						</input>
+					</Grid>
+					<Grid item>
+						<Button size="small" variant="contained" onClick={this.changeLocation.bind(this)}>
+							Confirm
+        		</Button>
+					</Grid>
+				</Grid>
+				<Grid container spacing={2}>
 					<Grid item xs={2}>
 					</Grid>
 					<Grid container item xs={8}>
