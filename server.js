@@ -9,6 +9,7 @@ app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 app.use(express.static("./client/dist"));
 
+console.log('user_key in server:', process.env.user_key)
 
 app.get("/restaurants", (req, res) => {
 	
