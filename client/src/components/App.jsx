@@ -13,7 +13,7 @@ const aws = require('aws-sdk');
 
 const zomatoConfig = {
 	headers: {
-		"user-key": process.env["user-key"]
+		"user-key": process.env.user_key
 	}
 };
 
