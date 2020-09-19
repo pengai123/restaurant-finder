@@ -6,7 +6,7 @@ export default function Nav(props) {
 		<div className="nav">
 			<span className="logo">
 				LOGO
-		    </span>
+		  </span>
 			<span className="button" >
 				See all restaurant
 		    </span>

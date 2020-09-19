@@ -2,36 +2,37 @@ import React from "react";
 import Restaurants from "./Restaurants.jsx";
 import Nav from "./Nav.jsx";
 import axios from "axios";
-//import config from "../config.js";
+//import config from "../config.jsx";
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Location from "./Location.jsx" 
+import Location from "./Location.jsx"
+const aws = require('aws-sdk');
+
+
+const zomatoConfig = {
+	headers: {
+		"user-key": process.env["user-key"]
+	}
+};
 
 class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			location: "",
-			restaurants: []
+			restaurants: [],
+			startingIdx: 0   // api can get data for a maximum of 20 restaurant each time
 		}
 	}
 
 	searchLocation(loc) {
-		axios.get(`https://developers.zomato.com/api/v2.1/locations?query=${loc}`, {
-			headers: {
-				"user-key": "1675e2cc12fe12dee2e8839c2ead3234"
-			}
-		})
+		axios.get(`https://developers.zomato.com/api/v2.1/locations?query=${loc}`, zomatoConfig)
 			.then(result => {
 				let location = result.data.location_suggestions[0];
 				console.log('location:', location)
-				axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${location.entity_id}&entity_type=${location.entity_type}`, {
-					headers: {
-						"user-key": "1675e2cc12fe12dee2e8839c2ead3234"
-					}
-				})
+				axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${location.entity_id}&entity_type=${location.entity_type}&start=${this.state.startingIdx}`, zomatoConfig)
 					.then(result => {
 						console.log('result.data:', result.data.restaurants)
 						this.setState({
@@ -42,24 +43,11 @@ class App extends React.Component {
 			})
 	}
 
-
-	onChange(e) {
-		this.setState({
-			[e.target.name]: e.target.value
-		})
+	changeLocation(loc) {
+		this.searchLocation(loc);
 	}
-
-	changeLocation(e) {
-		e.preventDefault();
-		if (this.state.newLocation) {
-			this.searchLocation(this.state.newLocation);
-		}
-	}
-
-
 
 	componentDidMount() {
-
 		this.searchLocation("phoenix")
 	}
 
@@ -67,46 +55,13 @@ class App extends React.Component {
 		return (
 			<div>
 				<Nav />
-				{/* <Location location={this.state.location}/> */}
-				<Grid container
-					direction="row"
-					justify="center"
-					alignItems="center"
-					spacing={2}
-				>
-					<Grid container item
-						direction="row"
-						justify="center"
-						alignItems="center"
-					>
-						<LocationOnOutlinedIcon />
-						<Typography variant="subtitle1" >
-							{this.state.location}
-						</Typography>
-					</Grid>
-					<Grid item>
-						<input name="newLocation"
-							placeholder="Enter city name.."
-							style={{ height: "25px", width: "200px" }}
-							onChange={this.onChange.bind(this)}
-						>
-						</input>
-					</Grid>
-					<Grid item>
-						<Button size="small" variant="contained"
-							style={{ fontWeight: "bold" }}
-							onClick={this.changeLocation.bind(this)}
-						>
-							GO!
-        		</Button>
-					</Grid>
-				</Grid>
+				<Location changeLocation={this.changeLocation.bind(this)} location={this.state.location} />
 				<Grid container
 					direction="row"
 					justify="center"
 					alignItems="center"
 					spacing={2}>
-					<Grid container item xs={8}>
+					<Grid container item sm={8} xs={12}>
 						<Restaurants restaurants={this.state.restaurants} />
 					</Grid>
 				</Grid>
