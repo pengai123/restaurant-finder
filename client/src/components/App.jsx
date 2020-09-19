@@ -38,7 +38,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div style={{ backgroundColor: `#C98686`, backgroundImage: `url(${"https://image.freepik.com/free-photo/empty-wooden-table-top-with-blurred-coffee-shop_7188-1337.jpg"})` }}>
 				<Nav />
 				<Location changeLocation={this.changeLocation.bind(this)} location={this.state.location} />
 				<Grid container
@@ -46,7 +46,7 @@ class App extends React.Component {
 					justify="center"
 					alignItems="center"
 					spacing={2}>
-					<Grid container item sm={8} xs={12}>
+					<Grid container item sm={9} xs={12}>
 						<Restaurants restaurants={this.state.restaurants} />
 					</Grid>
 				</Grid>

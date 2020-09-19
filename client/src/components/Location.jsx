@@ -31,22 +31,22 @@ export default function Location(props) {
 				justify="center"
 				alignItems="center"
 			>
-				<LocationOnOutlinedIcon />
-				<Typography variant="subtitle1" >
+				<LocationOnOutlinedIcon style={{ color: "white", fontWeight: "bold" }} />
+				<Typography variant="subtitle1" style={{ color: "white", fontWeight: "bold" }}>
 					{props.location}
 				</Typography>
 			</Grid>
 			<Grid item>
 				<input name="newLocation"
-					placeholder="Enter city name.."
-					style={{ height: "25px", width: "200px" }}
+					placeholder="Enter city name here.."
+					style={{ height: "25px", width: "200px", color: "white", fontWeight: "bold", backgroundColor: "transparent" }}
 					onChange={onChange}
 				>
 				</input>
 			</Grid>
 			<Grid item>
 				<Button size="small" variant="contained"
-					style={{ fontWeight: "bold" }}
+					style={{ fontWeight: "bold", backgroundColor: "#774936" }}
 					onClick={handleClick}
 				>
 					GO!

@@ -12,7 +12,7 @@ import Rating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles({
 	cardRoot: {
-		maxWidth: 300,
+		maxWidth: 280,
 		height: "100%"
 	},
 	cardMedia: {
@@ -41,7 +41,7 @@ export default function Restaurants(props) {
 			{props.restaurants.map((restaurant, idx) => {
 				return (
 					<Grid item sm={3} xs={12} key={idx}>
-						<Card className={classes.cardRoot}>
+						<Card className={classes.cardRoot} style={{backgroundColor: "#FFF4EC"}}>
 							<CardActionArea href={restaurant.restaurant.url} target="_blank">
 								<CardMedia
 									className={classes.cardMedia}
@@ -64,7 +64,7 @@ export default function Restaurants(props) {
 										/>
 									</Grid>
 									<Grid item>
-										<Typography variant="caption" color="textSecondary" style={{ color: "#" + restaurant.restaurant.user_rating.rating_color, fontWeight: "bold" }}>
+										<Typography variant="caption" style={{ color: "#" + restaurant.restaurant.user_rating.rating_color, fontWeight: "bold" }}>
 											{restaurant.restaurant.user_rating.rating_text}
 										</Typography>
 									</Grid>
