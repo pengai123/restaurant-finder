@@ -13,9 +13,12 @@ const aws = require('aws-sdk');
 
 const zomatoConfig = {
 	headers: {
+		//"user-key": config.user_key
 		"user-key": process.env.user_key
 	}
 };
+
+console.log('user_key:', process.env.user_key)
 
 class App extends React.Component {
 	constructor() {
