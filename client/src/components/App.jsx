@@ -2,23 +2,11 @@ import React from "react";
 import Restaurants from "./Restaurants.jsx";
 import Nav from "./Nav.jsx";
 import axios from "axios";
-//import config from "../config.jsx";
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Location from "./Location.jsx"
-const aws = require('aws-sdk');
 
-
-const zomatoConfig = {
-	headers: {
-		//"user-key": config.user_key
-		"user-key": process.env.user_key
-	}
-};
-
-console.log('user_key in client:', process.env.user_key)
 
 class App extends React.Component {
 	constructor() {
@@ -31,18 +19,12 @@ class App extends React.Component {
 	}
 
 	searchLocation(loc) {
-		axios.get(`https://developers.zomato.com/api/v2.1/locations?query=${loc}`, zomatoConfig)
+		axios.get(`/restaurants/${loc}?start=${this.state.startingIdx}`)
 			.then(result => {
-				let location = result.data.location_suggestions[0];
-				console.log('location:', location)
-				axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${location.entity_id}&entity_type=${location.entity_type}&start=${this.state.startingIdx}`, zomatoConfig)
-					.then(result => {
-						console.log('result.data:', result.data.restaurants)
-						this.setState({
-							location: location.title,
-							restaurants: result.data.restaurants
-						})
-					})
+				this.setState({
+					location: result.data.location.title,
+					restaurants: result.data.restaurants
+				})
 			})
 	}
 
