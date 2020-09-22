@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,7 +15,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -58,9 +58,10 @@ const useStyles = makeStyles((theme) => ({
 		color: 'inherit',
 	},
 	inputInput: {
-		padding: theme.spacing(1, 1, 1, 0),
-		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+		// padding: theme.spacing(1, 1, 1, 0),
+		// // vertical padding + font size from searchIcon
+		//paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+		paddingLeft: "1em",
 		transition: theme.transitions.create('width'),
 		width: '100%',
 		[theme.breakpoints.up('md')]: {
@@ -82,15 +83,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Nav(props) {
+export default function Navbar(props) {
 
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+	const [keyWord, setKeyWord] = useState("");
 
 	const isMenuOpen = Boolean(anchorEl);
 	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+	const onChange = function (e) {
+		if (e.target.value) {
+			setKeyWord(e.target.value)
+		}
+	}
+
+	const searchKeyword = function (e) {
+		e.preventDefault();
+		if(keyWord){
+			props.changeKeyword(keyWord);
+		}
+	}
 	const handleProfileMenuOpen = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -167,31 +181,30 @@ export default function Nav(props) {
 
 	return (
 		<div className={classes.grow}>
-			<AppBar position="static" style={{backgroundColor: "#8d99ae"}}>
+			<AppBar position="static" style={{ backgroundColor: "#8d99ae" }}>
 				<Toolbar>
 					<IconButton
 						edge="start"
 						className={classes.menuButton}
 						color="inherit"
 						aria-label="open drawer"
+						href="/"
 					>
-						<RestaurantMenuIcon fontSize="large"/>
+						<RestaurantMenuIcon fontSize="large" />
 					</IconButton>
 					<Typography className={classes.title} variant="h6" noWrap>
 						KITCHEN
 						</Typography>
 					<div className={classes.search}>
-						<div className={classes.searchIcon}>
-							<SearchIcon />
-						</div>
 						<InputBase
-							placeholder="Search…"
+							placeholder="Keyword Here..."
 							classes={{
 								root: classes.inputRoot,
 								input: classes.inputInput,
 							}}
-							inputProps={{ 'aria-label': 'search' }}
+							onChange={onChange.bind(this)}
 						/>
+						<IconButton onClick={searchKeyword.bind(this)}><SearchIcon /></IconButton>
 					</div>
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>

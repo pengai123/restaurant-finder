@@ -9,6 +9,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles({
 	cardRoot: {
@@ -37,11 +41,12 @@ export default function Restaurants(props) {
 		<Grid container
 			direction="row"
 			justify="center"
-			spacing={3}>
+			spacing={3}
+		>
 			{props.restaurants.map((restaurant, idx) => {
 				return (
-					<Grid item sm={3} xs={12} key={idx}>
-						<Card className={classes.cardRoot} style={{backgroundColor: "#FFF4EC"}}>
+					<Grid item sm={3} xs={12} key={idx} >
+						<Card className={classes.cardRoot} style={{ backgroundColor: "#FFF4EC" }}>
 							<CardActionArea href={restaurant.restaurant.url} target="_blank">
 								<CardMedia
 									className={classes.cardMedia}
@@ -82,7 +87,6 @@ export default function Restaurants(props) {
 									</Grid>
 								</Grid>
 							</CardContent>
-
 							<CardActions>
 								<Button size="small" style={{ color: "grey", fontWeight: "bold" }}>
 									Share

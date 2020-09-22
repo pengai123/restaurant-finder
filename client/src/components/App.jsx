@@ -1,6 +1,6 @@
 import React from "react";
 import Restaurants from "./Restaurants.jsx";
-import Nav from "./Nav.jsx";
+import Navbar from "./Navbar.jsx";
 import axios from "axios";
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -14,13 +14,26 @@ class App extends React.Component {
 		this.state = {
 			location: "",
 			restaurants: [],
-			startingIdx: 0   // api can get data for a maximum of 20 restaurant each time
+			startingIdx: 0,   // api can get data for a maximum of 20 restaurant each time
+			keyWord: ""
 		}
 	}
 
-	searchLocation(loc) {
-		axios.get(`/restaurants/${loc}?start=${this.state.startingIdx}`)
+	searchKeyword(kw){
+		axios.get(`/restaurants/${this.state.location}?start=${this.state.startingIdx}&keyWord=${kw}`)
 			.then(result => {
+				console.log("result.data.location: ", result.data.location)
+				this.setState({
+					keyWord: kw,
+					restaurants: result.data.restaurants
+				})
+			})
+	}
+
+	searchLocation(loc) {
+		axios.get(`/restaurants/${loc}?start=${this.state.startingIdx}&keyWord=`)
+			.then(result => {
+				console.log("result.data.location: ", result.data.location)
 				this.setState({
 					location: result.data.location.title,
 					restaurants: result.data.restaurants
@@ -32,14 +45,17 @@ class App extends React.Component {
 		this.searchLocation(loc);
 	}
 
+	changeKeyword(kw) {
+		this.searchKeyword(kw);
+	}
 	componentDidMount() {
-		this.searchLocation("phoenix")
+		this.searchLocation("las vegas")
 	}
 
 	render() {
 		return (
 			<div style={{ backgroundColor: `#C98686`, backgroundImage: `url(${"https://image.freepik.com/free-photo/empty-wooden-table-top-with-blurred-coffee-shop_7188-1337.jpg"})` }}>
-				<Nav />
+				<Navbar changeKeyword={this.changeKeyword.bind(this)} />
 				<Location changeLocation={this.changeLocation.bind(this)} location={this.state.location} />
 				<Grid container
 					direction="row"
