@@ -4,6 +4,7 @@ const bp = require("body-parser")
 const port = process.env.PORT || 3000;
 const axios = require("axios");
 //const config = require("./config.js")
+const dbHandlers = require("./database/handlers.js")
 
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
@@ -15,6 +16,13 @@ const zomatoConfig = {
 		"user-key": process.env.user_key
 	}
 };
+
+//dbHandlers.newAccount({username: "username4", password: "pass4"})
+//dbHandlers.clearAccount();
+
+// dbHandlers.findAccount("username2", function(result) {
+// 	console.log('result:', result)
+// })
 
 app.get("/restaurants/:loc", (req, res) => {
 
