@@ -3,7 +3,7 @@ const app = express();
 const bp = require("body-parser")
 const port = process.env.PORT || 3000;
 const axios = require("axios");
-//const config = require("./config.js")
+const config = require("./config.js")
 const dbHandlers = require("./database/handlers.js")
 
 app.use(bp.json());
@@ -12,12 +12,12 @@ app.use(express.static("./client/dist"));
 
 const zomatoConfig = {
 	headers: {
-		//"user-key": config.user_key
-		"user-key": process.env.user_key
+		"user-key": config.user_key
+		//"user-key": process.env.user_key
 	}
 };
 
-//dbHandlers.newAccount({username: "username4", password: "pass4"})
+
 //dbHandlers.clearAccount();
 
 // dbHandlers.findAccount("username2", function(result) {
@@ -37,13 +37,29 @@ app.get("/restaurants/:loc", (req, res) => {
 			let location = result.data.location_suggestions[0];
 			axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${location.entity_id}&entity_type=${location.entity_type}&start=${start}&q=${keyWord}`, zomatoConfig)
 				.then(result => {
-					console.log('result.data:', result.data)
+					//console.log('result.data:', result.data)
 					let restaurants = result.data.restaurants;
 					//console.log('result.data:', result.data.restaurants)
 					res.send({location: location, restaurants: restaurants});
 				})
 		})
-	
+})
+
+
+app.post("/accounts", (req, res) => {
+	//console.log('req.body:', req.body)
+	dbHandlers.newAccount(req.body, function(result){
+		res.send(result)
+	})
+})
+
+app.get("/accounts/:username", (req, res) => {
+	//console.log('username:', req.params.username)
+	let username = req.params.username;
+	dbHandlers.findAccount(username, function(result){
+		console.log('result:', result)
+		res.send(result)
+	})
 })
 
 

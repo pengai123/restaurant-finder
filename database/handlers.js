@@ -11,8 +11,9 @@ let newAccount = function (userObj, cb = () => { }) {
 let findAccount = function (username, cb = () => { }) {
 	db.Account.findOne({ username: username })
 		.then(result => {
-			cb(result);
+			cb(null, result);
 		})
+		.catch(err => cb(err))
 }
 
 let clearAccount = function (cb = () => { }) {

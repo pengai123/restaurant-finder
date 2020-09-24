@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
+const mongodbAtlasUrl = require("./mongodbAtlasUrl.js")
 
-mongoose.connect('mongodb+srv://mongodb:mongodb@atlascluster1.1pbvo.mongodb.net/restaurant-finder?retryWrites=true&w=majority', {
+// Heroku config var:  process.env.mongodbAtlasUrl 
+
+mongoose.connect(mongodbAtlasUrl, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useCreateIndex: true
