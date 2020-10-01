@@ -20,9 +20,6 @@ const zomatoConfig = {
 
 //dbHandlers.clearAccount();
 
-// dbHandlers.findAccount("username2", function(result) {
-// 	console.log('result:', result)
-// })
 
 app.get("/restaurants/:loc", (req, res) => {
 
@@ -40,7 +37,7 @@ app.get("/restaurants/:loc", (req, res) => {
 					//console.log('result.data:', result.data)
 					let restaurants = result.data.restaurants;
 					//console.log('result.data:', result.data.restaurants)
-					res.send({location: location, restaurants: restaurants});
+					res.send({ location: location, restaurants: restaurants });
 				})
 		})
 })
@@ -48,17 +45,24 @@ app.get("/restaurants/:loc", (req, res) => {
 
 app.post("/accounts", (req, res) => {
 	//console.log('req.body:', req.body)
-	dbHandlers.newAccount(req.body, function(result){
-		res.send(result)
+	dbHandlers.newAccount(req.body, function (err, result) {
+		if (err) {
+			console.log("username already existed")
+		}
+		console.log('result:', result)
+		res.send(result);
 	})
 })
 
 app.get("/accounts/:username", (req, res) => {
 	//console.log('username:', req.params.username)
 	let username = req.params.username;
-	dbHandlers.findAccount(username, function(result){
+	dbHandlers.findAccount(username, function (err, result) {
+		if (err) {
+			console.log('err:', err)
+		}
 		console.log('result:', result)
-		res.send(result)
+		res.send(result);
 	})
 })
 

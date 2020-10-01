@@ -4,8 +4,9 @@ let newAccount = function (userObj, cb = () => { }) {
 	db.Account.create(userObj)
 		.then(result => {
 			console.log('new user result:', result)
-			cb(result);
+			cb(null, result);
 		})
+		.catch(err => cb(err))
 }
 
 let findAccount = function (username, cb = () => { }) {

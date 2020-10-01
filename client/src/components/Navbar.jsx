@@ -133,8 +133,8 @@ export default function Navbar(props) {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Log In</MenuItem>
+			<MenuItem onClick={handleMenuClose}>Create account</MenuItem>
 		</Menu>
 	);
 
