@@ -3,7 +3,7 @@ const app = express();
 const bp = require("body-parser")
 const port = process.env.PORT || 3000;
 const axios = require("axios");
-const config = require("./config.js")
+//const config = require("./config.js")
 const dbHandlers = require("./database/handlers.js")
 
 app.use(bp.json());
@@ -12,8 +12,8 @@ app.use(express.static("./client/dist"));
 
 const zomatoConfig = {
 	headers: {
-		"user-key": config.user_key
-		//"user-key": process.env.user_key
+		//"user-key": config.user_key
+		"user-key": process.env.user_key
 	}
 };
 
@@ -47,10 +47,13 @@ app.post("/accounts", (req, res) => {
 	//console.log('req.body:', req.body)
 	dbHandlers.newAccount(req.body, function (err, result) {
 		if (err) {
-			console.log("username already existed")
+			console.log("username existed")
+			res.send("username existed");
+		} else {
+			console.log('result:', result)
+			res.send(result);
 		}
-		console.log('result:', result)
-		res.send(result);
+		
 	})
 })
 

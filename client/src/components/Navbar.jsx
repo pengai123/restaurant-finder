@@ -16,6 +16,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
+import Modal from 'react-modal';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -92,6 +94,14 @@ export default function Navbar(props) {
 
 	const isMenuOpen = Boolean(anchorEl);
 	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isCreateAccountModalOpen, setIsCreateAccountModalOpen] = useState(false);
+	const [isLogInModalOpen, setIsLogInModalOpen] = useState(false);
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [message, setMessage] = useState("");
+	const [messageColor, setMessageColor] = useState("orange")
+
 
 	const onChange = function (e) {
 		if (e.target.value) {
@@ -101,7 +111,7 @@ export default function Navbar(props) {
 
 	const searchKeyword = function (e) {
 		e.preventDefault();
-		if(keyWord){
+		if (keyWord) {
 			props.changeKeyword(keyWord);
 		}
 	}
@@ -122,6 +132,99 @@ export default function Navbar(props) {
 		setMobileMoreAnchorEl(event.currentTarget);
 	};
 
+	const handleModalClose = () => {
+		setIsModalOpen(false);
+		setIsCreateAccountModalOpen(false);
+		setIsLogInModalOpen(false);
+		setUsername("");
+		setPassword("");
+		setMessage("")
+	}
+
+	const handleLogIn = () => {
+		handleMenuClose();
+		setIsLogInModalOpen(true);
+		setIsModalOpen(true);
+	}
+
+	const handleCreateAccount = () => {
+		handleMenuClose();
+		setIsCreateAccountModalOpen(true);
+		setIsModalOpen(true);
+	}
+
+	const logIn = (e) => {
+		e.preventDefault();
+		if (username && password) {
+			axios.get(`/accounts/${username}`)
+				.then(result => {
+					console.log('result:', result.data)
+
+					if (result.data.password === password) {
+						setMessage("Login succeeded!")
+						setMessageColor("green")
+					} else {
+						setMessage("Invalid username and password combination!")
+						setMessageColor("red")
+					}
+				})
+		} else {
+			setMessage("Please fill username and password fields!")
+			setMessageColor("red")
+		}
+	}
+
+	const createAccount = (e) => {
+		e.preventDefault();
+		if (username && password) {
+			let newAcnt = { username, password }
+			axios.post("/accounts", newAcnt)
+				.then(result => {
+					console.log('result data:', result.data, typeof(result.data))
+					if (result.data === "username existed") {
+						setMessage("Username is already existed!")
+						setMessageColor("red")
+					} else {
+						setMessage("Account created successfully!")
+						setMessageColor("green")
+					}
+				})
+		} else {
+			setMessage("Please fill username and password fields!")
+			setMessageColor("red")
+		}
+	}
+
+	const handleInputChange = (e) => {
+		if (e.target.name === "username") {
+			setUsername(e.target.value);
+		}
+
+		if (e.target.name === "password") {
+			setPassword(e.target.value);
+		}
+	}
+
+	const LogInModal = (
+		<form className="form">
+			<h3 className="form-header">Log In</h3>
+			<input className="form-input" name="username" placeholder="Enter username here.." onChange={handleInputChange} />
+			<input className="form-input" name="password" placeholder="Enter password here.." onChange={handleInputChange} />
+			<button className="form-btn" onClick={logIn} >Confirm</button>
+			<p className="form-msg" style={{ color: messageColor }} >{message}</p>
+		</form>
+	)
+
+	const CreateAccountModal = (
+		<form className="form">
+			<h3 className="form-header">Create Account</h3>
+			<input className="form-input" name="username" placeholder="Enter username here.." onChange={handleInputChange} />
+			<input className="form-input" name="password" placeholder="Enter password here.." onChange={handleInputChange} />
+			<button className="form-btn" onClick={createAccount} >Create</button>
+			<p className="form-msg" style={{ color: messageColor }} >{message}</p>
+		</form>
+	)
+
 	const menuId = 'primary-search-account-menu';
 	const renderMenu = (
 		<Menu
@@ -133,8 +236,8 @@ export default function Navbar(props) {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<MenuItem onClick={handleMenuClose}>Log In</MenuItem>
-			<MenuItem onClick={handleMenuClose}>Create account</MenuItem>
+			<MenuItem onClick={handleLogIn}>Log In</MenuItem>
+			<MenuItem onClick={handleCreateAccount}>Create account</MenuItem>
 		</Menu>
 	);
 
@@ -193,7 +296,7 @@ export default function Navbar(props) {
 						<RestaurantMenuIcon fontSize="large" />
 					</IconButton>
 					<Typography className={classes.title} variant="h6" noWrap>
-						KITCHEN
+						Restaurant Finder
 						</Typography>
 					<div className={classes.search}>
 						<InputBase
@@ -244,6 +347,23 @@ export default function Navbar(props) {
 			</AppBar>
 			{renderMobileMenu}
 			{renderMenu}
+			<Modal
+				ariaHideApp={false}
+				isOpen={isModalOpen}
+				onRequestClose={handleModalClose}
+				style={{
+					content: {
+						background: "#FFF4EC",
+						top: '30%',
+						left: '30%',
+						right: '30%',
+						bottom: '30%'
+					}
+				}}
+			>
+				{isLogInModalOpen && LogInModal}
+				{isCreateAccountModalOpen && CreateAccountModal}
+			</Modal>
 		</div>
 	);
 }
