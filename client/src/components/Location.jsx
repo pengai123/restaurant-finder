@@ -17,6 +17,7 @@ const useStyles = makeStyles ({
 		fontWeight: "bold", 
 		borderRadius: "5px", 
 		paddingLeft: "1em",
+		borderColor: "#edf6f9",
 		backgroundColor: "transparent"
 	},
 	newLocBtn: {

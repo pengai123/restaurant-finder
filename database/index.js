@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 // Heroku config var:  process.env.mongodbAtlasUrl 
 
-mongoose.connect(process.env.mongodbAtlasUrl, {
+mongoose.connect(process.env.mongodbAtlasUrl || mongodbAtlasUrl, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useCreateIndex: true

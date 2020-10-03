@@ -60,9 +60,6 @@ const useStyles = makeStyles((theme) => ({
 		color: 'inherit',
 	},
 	inputInput: {
-		// padding: theme.spacing(1, 1, 1, 0),
-		// // vertical padding + font size from searchIcon
-		//paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
 		paddingLeft: "1em",
 		transition: theme.transitions.create('width'),
 		width: '100%',
@@ -300,7 +297,7 @@ export default function Navbar(props) {
 						</Typography>
 					<div className={classes.search}>
 						<InputBase
-							placeholder="Keyword Here..."
+							placeholder="Keyword here ..."
 							classes={{
 								root: classes.inputRoot,
 								input: classes.inputInput,
@@ -312,12 +309,12 @@ export default function Navbar(props) {
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 						<IconButton aria-label="show 4 new mails" color="inherit">
-							<Badge badgeContent={4} color="secondary">
+							<Badge badgeContent={6} color="secondary">
 								<MailIcon />
 							</Badge>
 						</IconButton>
 						<IconButton aria-label="show 17 new notifications" color="inherit">
-							<Badge badgeContent={17} color="secondary">
+							<Badge badgeContent={0} color="secondary">
 								<NotificationsIcon />
 							</Badge>
 						</IconButton>
