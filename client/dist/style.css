@@ -73,16 +73,17 @@
 
 .restaurant-container {
 	display: grid;
-	grid-row-gap: 25px;
-	grid-column-gap: 5px;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	/* grid-row-gap: 25px;
+	grid-column-gap: 5px; */
+	grid-gap: 30px;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 	justify-content: center;
 	margin: 0 10%;
 }
 
 
 .card-root {
-	max-width: 260px;
+	/* max-width: 260px; */
 	height: 100%;
 }
 
