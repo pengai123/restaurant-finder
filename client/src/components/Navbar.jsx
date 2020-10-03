@@ -290,7 +290,7 @@ export default function Navbar(props) {
 						aria-label="open drawer"
 						href="/"
 					>
-						<RestaurantMenuIcon fontSize="large" />
+						<RestaurantMenuIcon className="logo" fontSize="large" />
 					</IconButton>
 					<Typography className={classes.title} variant="h6" noWrap>
 						Restaurant Finder
@@ -351,10 +351,10 @@ export default function Navbar(props) {
 				style={{
 					content: {
 						background: "#FFF4EC",
-						top: '30%',
+						top: '25%',
 						left: '30%',
 						right: '30%',
-						bottom: '30%'
+						bottom: '25%'
 					}
 				}}
 			>

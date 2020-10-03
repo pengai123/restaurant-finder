@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Location from "./Location.jsx"
 import Page from "./Page.jsx"
+import Footer from "./Footer.jsx"
 
 class App extends React.Component {
 	constructor() {
@@ -95,8 +96,9 @@ class App extends React.Component {
 			<div className="root" >
 				<Navbar changeKeyword={this.changeKeyword.bind(this)} />
 				<Location changeLocation={this.changeLocation.bind(this)} location={this.state.location} />
-				<Page pageClick={this.pageClick.bind(this)} />
 				<Restaurants restaurants={this.state.restaurants} />
+				<Page pageClick={this.pageClick.bind(this)} />
+				<Footer />
 			</div>
 		)
 	}

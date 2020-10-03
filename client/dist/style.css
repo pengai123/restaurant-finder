@@ -95,7 +95,7 @@
 	display: grid;
 	grid-auto-flow: column;
 	justify-items: center;
-	justify-content: space-around;
+	justify-content: center;
 }
 
 .page-btn {
@@ -106,10 +106,40 @@
 	color: black;
 	font-weight: bold;
 	/* background-color: #cd9777; */
-	background-color: transparent;
+	background-color: #8d99ae;
 }
 
 .page-btn:hover {
 	/* background-color: #edc4b3; */
 	background-color: #d9d9d9;
+}
+
+.footer-container {
+	height: 200px;
+	background-color: #8d99ae;
+	font-family: Montserrat, Helvetica, Arial, sans-serif;
+	display: grid;
+	grid-auto-flow: row;
+	justify-items: center;
+	align-items: center;
+	align-content: center;
+}
+
+.footer-project {
+	margin: 2px;
+	color: #272640;
+	font-size: large;
+	font-weight: bold;
+}
+
+.footer-copyright {
+	margin: 2px;
+	font-style: italic;
+	color: #272640;
+	font-size: small;
+	font-weight: bold;
+}
+
+.logo {
+	color: #ff5d8f;
 }
