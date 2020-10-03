@@ -52,7 +52,8 @@
 
 .form-input {
 	margin: 5px;
-	height: 25px;
+	height: 40px;
+	width: 70%;
 	padding-left: 1em;
 	font-weight: bold;
 	border-radius: 5px;
@@ -61,7 +62,8 @@
 .form-btn {
 	margin: 5px;
 	border-radius: 5px;
-	padding: 5px 10px;
+	padding: 10px 20px;
+	font-weight: 700;
 }
 
 .form-msg {
@@ -88,6 +90,8 @@
 	/* background-color: #fcd6d0; */
 	/* background-color: #FFF4EC; */
 	background-color: #d9d9d9;
+	border:2px solid;
+	border-color: honeydew;
 }
 
 .page-container {
@@ -130,6 +134,7 @@
 	color: #272640;
 	font-size: large;
 	font-weight: bold;
+	font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
 }
 
 .footer-copyright {
@@ -142,4 +147,8 @@
 
 .logo {
 	color: #ff5d8f;
+}
+
+::placeholder {
+	font-size: 120%;
 }

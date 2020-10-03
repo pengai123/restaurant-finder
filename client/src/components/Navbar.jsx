@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {
 		display: 'none',
+		fontFamily: "Century Gothic, CenturyGothic, Geneva, AppleGothic, sans-serif",
+		fontSize: "150%",
+		fontWeight: "900",
 		[theme.breakpoints.up('sm')]: {
 			display: 'block',
 		},
@@ -292,7 +295,8 @@ export default function Navbar(props) {
 					>
 						<RestaurantMenuIcon className="logo" fontSize="large" />
 					</IconButton>
-					<Typography className={classes.title} variant="h6" noWrap>
+					{/* variant="h6" */}
+					<Typography className={classes.title} noWrap>  
 						Restaurant Finder
 						</Typography>
 					<div className={classes.search}>

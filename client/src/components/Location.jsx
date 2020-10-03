@@ -11,8 +11,8 @@ const useStyles = makeStyles ({
 		fontWeight: "bold"
 	},
 	input: {
-		height: "25px", 
-		width: "200px", 
+		height: "37px", 
+		width: "250px", 
 		color: "white", 
 		fontWeight: "bold", 
 		borderRadius: "5px", 
@@ -70,7 +70,7 @@ export default function Location(props) {
 				</input>
 			</Grid>
 			<Grid item>
-				<Button size="small" variant="contained"
+				<Button size="large" variant="contained"
 					className={classes.newLocBtn}
 					onClick={handleClick}
 				>

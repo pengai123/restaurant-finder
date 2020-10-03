@@ -12,7 +12,6 @@ app.use(express.static("./client/dist"));
 
 const zomatoConfig = {
 	headers: {
-		//"user-key": config.user_key
 		"user-key": process.env.user_key || config.user_key
 	}
 };
