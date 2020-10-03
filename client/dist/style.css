@@ -162,3 +162,68 @@
 ::placeholder {
 	font-size: 120%;
 }
+
+.abt-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 20% 1fr;
+	grid-template-areas: "hdr hdr hdr"
+											 "front back other";
+}
+
+.abt-hdr-container {
+	display:grid;
+	grid-area: hdr;
+	justify-items: center;
+	align-items: center;
+	align-content: center;
+}
+
+.abt-hdr {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 135%;
+	font-weight: 800;
+}
+
+.abt-front {
+	display:grid;
+	grid-auto-flow: row;
+	grid-area: front;
+	justify-items: center;
+	align-items: center;
+	align-content: flex-start;
+}
+
+.abt-back {
+	display:grid;
+	grid-area: back;
+	grid-auto-flow: row;
+	justify-items: center;
+	align-items: center;
+	align-content: flex-start;
+}
+
+.abt-other {
+	display:grid;
+	grid-area: other;
+	grid-auto-flow: row;
+	justify-items: center;
+	align-items: center;
+	align-content: flex-start;
+}
+
+.tech-hdr {
+margin: 5px;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 120%;
+font-weight: 700;
+}
+
+.tech-item {
+margin: 2px;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 300;
+color: #4c5c68;
+font-style: italic;
+font-size: 90%;
+}
