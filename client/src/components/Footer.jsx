@@ -44,6 +44,7 @@ export default function Footer() {
 				<p className="tech-item">Webpack</p>
 				<p className="tech-item">Babel</p>
 				<p className="tech-item">Heroku</p>
+				<p className="tech-item">Agile Development</p>
 			</div>
 		</div>
 	);

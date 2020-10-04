@@ -209,7 +209,7 @@ export default function Navbar(props) {
 		<form className="form">
 			<h3 className="form-header">Log In</h3>
 			<input className="form-input" name="username" placeholder="Enter username here.." onChange={handleInputChange} />
-			<input className="form-input" name="password" placeholder="Enter password here.." onChange={handleInputChange} />
+			<input className="form-input" name="password" type="password" placeholder="Enter password here.." onChange={handleInputChange} />
 			<button className="form-btn" onClick={logIn} >Confirm</button>
 			<p className="form-msg" style={{ color: messageColor }} >{message}</p>
 		</form>
@@ -219,7 +219,10 @@ export default function Navbar(props) {
 		<form className="form">
 			<h3 className="form-header">Create Account</h3>
 			<input className="form-input" name="username" placeholder="Enter username here.." onChange={handleInputChange} />
-			<input className="form-input" name="password" placeholder="Enter password here.." onChange={handleInputChange} />
+			<input className="form-input" name="password" type="password" placeholder="Enter password here.." onChange={handleInputChange} />
+			<p className="form-attention">ATTETION</p>
+			<p className="form-attention">This app is personal project</p>
+			<p className="form-attention">So DO NOT enter your PRIVATE info as password!</p>
 			<button className="form-btn" onClick={createAccount} >Create</button>
 			<p className="form-msg" style={{ color: messageColor }} >{message}</p>
 		</form>
@@ -355,10 +358,10 @@ export default function Navbar(props) {
 				style={{
 					content: {
 						background: "#FFF4EC",
-						top: '25%',
+						top: '20%',
 						left: '30%',
 						right: '30%',
-						bottom: '25%'
+						bottom: '20%'
 					}
 				}}
 			>
