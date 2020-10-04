@@ -99,6 +99,7 @@ export default function Navbar(props) {
 	const [isLogInModalOpen, setIsLogInModalOpen] = useState(false);
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [message, setMessage] = useState("");
 	const [messageColor, setMessageColor] = useState("orange")
 
@@ -138,6 +139,7 @@ export default function Navbar(props) {
 		setIsLogInModalOpen(false);
 		setUsername("");
 		setPassword("");
+		setPasswordConfirm("")
 		setMessage("")
 	}
 
@@ -176,19 +178,24 @@ export default function Navbar(props) {
 
 	const createAccount = (e) => {
 		e.preventDefault();
-		if (username && password) {
-			let newAcnt = { username, password }
-			axios.post("/accounts", newAcnt)
-				.then(result => {
-					console.log('result data:', result.data, typeof(result.data))
-					if (result.data === "username existed") {
-						setMessage("Username is already existed!")
-						setMessageColor("red")
-					} else {
-						setMessage("Account created successfully!")
-						setMessageColor("green")
-					}
-				})
+		if (username && password && passwordConfirm) {
+			if (password !== passwordConfirm) {
+				setMessage("The passwords don't match, try again!")
+				setMessageColor("red")
+			} else {
+				let newAcnt = { username, password }
+				axios.post("/accounts", newAcnt)
+					.then(result => {
+						console.log('result data:', result.data, typeof (result.data))
+						if (result.data === "username existed") {
+							setMessage("Username is already existed!")
+							setMessageColor("red")
+						} else {
+							setMessage("Account created successfully!")
+							setMessageColor("green")
+						}
+					})
+			}
 		} else {
 			setMessage("Please fill username and password fields!")
 			setMessageColor("red")
@@ -202,6 +209,10 @@ export default function Navbar(props) {
 
 		if (e.target.name === "password") {
 			setPassword(e.target.value);
+		}
+
+		if (e.target.name === "password-confirm") {
+			setPasswordConfirm(e.target.value);
 		}
 	}
 
@@ -220,6 +231,7 @@ export default function Navbar(props) {
 			<h3 className="form-header">Create Account</h3>
 			<input className="form-input" name="username" placeholder="Enter username here.." onChange={handleInputChange} />
 			<input className="form-input" name="password" type="password" placeholder="Enter password here.." onChange={handleInputChange} />
+			<input className="form-input" name="password-confirm" type="password" placeholder="Re-enter password here.." onChange={handleInputChange} />
 			<p className="form-attention">ATTETION</p>
 			<p className="form-attention">This app is personal project</p>
 			<p className="form-attention">So DO NOT enter your PRIVATE info as password!</p>
@@ -299,7 +311,7 @@ export default function Navbar(props) {
 						<RestaurantMenuIcon className="logo" fontSize="large" />
 					</IconButton>
 					{/* variant="h6" */}
-					<Typography className={classes.title} noWrap>  
+					<Typography className={classes.title} noWrap>
 						Restaurant Finder
 						</Typography>
 					<div className={classes.search}>
@@ -358,10 +370,10 @@ export default function Navbar(props) {
 				style={{
 					content: {
 						background: "#FFF4EC",
-						top: '20%',
+						top: '10%',
 						left: '30%',
 						right: '30%',
-						bottom: '20%'
+						bottom: '10%'
 					}
 				}}
 			>
