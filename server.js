@@ -31,6 +31,7 @@ app.get("/restaurants/:loc", (req, res) => {
 	axios.get(`https://developers.zomato.com/api/v2.1/locations?query=${loc}`, zomatoConfig)
 		.then(result => {
 			let location = result.data.location_suggestions[0];
+			console.log('location:', location)
 			axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${location.entity_id}&entity_type=${location.entity_type}&start=${start}&q=${keyWord}`, zomatoConfig)
 				.then(result => {
 					//console.log('result.data:', result.data)
