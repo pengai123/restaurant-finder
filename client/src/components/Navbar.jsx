@@ -114,6 +114,7 @@ export default function Navbar(props) {
 		e.preventDefault();
 		if (keyWord) {
 			props.changeKeyword(keyWord);
+			setKeyWord("")
 		}
 	}
 	const handleProfileMenuOpen = (event) => {
@@ -321,6 +322,7 @@ export default function Navbar(props) {
 								root: classes.inputRoot,
 								input: classes.inputInput,
 							}}
+							value={keyWord}
 							onChange={onChange.bind(this)}
 						/>
 						<IconButton onClick={searchKeyword.bind(this)}><SearchIcon /></IconButton>

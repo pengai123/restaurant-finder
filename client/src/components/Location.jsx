@@ -40,6 +40,7 @@ export default function Location(props) {
 		e.preventDefault();
 		if (newLoc) {
 			props.changeLocation(newLoc);
+			setNewLoc("")
 		}
 	}
 
@@ -65,6 +66,7 @@ export default function Location(props) {
 				<input name="newLocation"
 					placeholder="Enter city name here.."
 					className={classes.input}
+					value={newLoc}
 					onChange={onChange}
 				>
 				</input>
