@@ -2,9 +2,6 @@ import React from "react";
 import Restaurants from "./Restaurants.jsx";
 import Navbar from "./Navbar.jsx";
 import axios from "axios";
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Location from "./Location.jsx"
 import Page from "./Page.jsx"
 import Footer from "./Footer.jsx"
