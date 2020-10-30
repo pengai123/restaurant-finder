@@ -5,23 +5,23 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles ({
+const useStyles = makeStyles({
 	location: {
-		color: "white", 
+		color: "white",
 		fontWeight: "bold"
 	},
 	input: {
-		height: "37px", 
-		width: "250px", 
-		color: "white", 
-		fontWeight: "bold", 
-		borderRadius: "5px", 
+		height: "37px",
+		width: "250px",
+		color: "white",
+		fontWeight: "bold",
+		borderRadius: "5px",
 		paddingLeft: "1em",
 		borderColor: "#edf6f9",
 		backgroundColor: "transparent"
 	},
 	newLocBtn: {
-		fontWeight: "bold", 
+		fontWeight: "bold",
 		backgroundColor: "grey"
 	}
 });
@@ -32,11 +32,11 @@ export default function Location(props) {
 	const classes = useStyles();
 	let [newLoc, setNewLoc] = useState("")
 
-	let onChange = function (e) {
+	const onChange = function (e) {
 		setNewLoc(e.target.value)
 	}
 
-	let handleClick = function (e) {
+	const handleClick = function (e) {
 		e.preventDefault();
 		if (newLoc) {
 			props.changeLocation(newLoc);
@@ -44,6 +44,12 @@ export default function Location(props) {
 		}
 	}
 
+	const handleKeyPress = (e) => {
+		if (e.key === "Enter" && newLoc) {
+			props.changeLocation(newLoc);
+			setNewLoc("")
+		}
+	}
 	return (
 		<Grid container
 			direction="row"
@@ -57,7 +63,7 @@ export default function Location(props) {
 				alignItems="center"
 				className={classes.location}
 			>
-				<LocationOnOutlinedIcon  />
+				<LocationOnOutlinedIcon />
 				<Typography variant="subtitle1" >
 					{props.location}
 				</Typography>
@@ -68,6 +74,7 @@ export default function Location(props) {
 					className={classes.input}
 					value={newLoc}
 					onChange={onChange}
+					onKeyPress={handleKeyPress}
 				>
 				</input>
 			</Grid>

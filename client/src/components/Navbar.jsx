@@ -184,10 +184,10 @@ export default function Navbar(props) {
 			if (password !== passwordConfirm) {
 				setMessage("The passwords don't match, try again!")
 				setMessageColor("red")
-			} else if (password.search(/[a-z]/) === -1){
+			} else if (password.search(/[a-z]/) === -1) {
 				setMessage("Password must have at least 1 lower-case letter!!")
 				setMessageColor("red")
-			} else if (password.search(/[A-Z]/) === -1){
+			} else if (password.search(/[A-Z]/) === -1) {
 				setMessage("Password must have at least 1 upper-case letter!!")
 				setMessageColor("red")
 			} else {
@@ -224,6 +224,12 @@ export default function Navbar(props) {
 		}
 	}
 
+	const handleKeyPress = e => {
+		if (e.key === "Enter" && keyWord) {
+			props.changeKeyword(keyWord);
+			setKeyWord("")
+		}
+	}
 	const LogInModal = (
 		<form className="form">
 			<h3 className="form-header">Log In</h3>
@@ -240,7 +246,7 @@ export default function Navbar(props) {
 			<input className="form-input" name="username" placeholder="Enter username here.." onChange={handleInputChange} />
 			<input className="form-input" name="password" type="password" placeholder="Enter password here.." onChange={handleInputChange} />
 			<input className="form-input" name="password-confirm" type="password" placeholder="Re-enter password here.." onChange={handleInputChange} />
-			<p className="form-note"><RiAlarmWarningLine style={{margin: "0 4px", fontSize: "130%"}}/>ATTENTION<RiAlarmWarningLine style={{margin: "0 4px", fontSize: "130%"}}/></p>
+			<p className="form-note"><RiAlarmWarningLine style={{ margin: "0 4px", fontSize: "130%" }} />ATTENTION<RiAlarmWarningLine style={{ margin: "0 4px", fontSize: "130%" }} /></p>
 			<p className="form-note">This is a personal project!</p>
 			<p className="form-note">So DO NOT use private info in password!</p>
 			<button className="form-btn" onClick={createAccount} >Create</button>
@@ -331,6 +337,7 @@ export default function Navbar(props) {
 							}}
 							value={keyWord}
 							onChange={onChange.bind(this)}
+							onKeyPress={handleKeyPress}
 						/>
 						<IconButton onClick={searchKeyword.bind(this)}><SearchIcon /></IconButton>
 					</div>

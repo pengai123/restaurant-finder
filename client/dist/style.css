@@ -31,6 +31,15 @@
   margin-right: 5px;
   font-size: 1.1em;
 } */
+
+.logo {
+	color: #ff5d8f;
+	/* animation-name: App-logo-spin;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear; */
+}
+
 .root {
 	background-image: url("https://image.freepik.com/free-photo/empty-wooden-table-top-with-blurred-coffee-shop_7188-1337.jpg");
 	display: grid;
@@ -95,11 +104,10 @@
 }
 
 .card-root:hover {
-	/* background-color: #fcd6d0; */
-	/* background-color: #FFF4EC; */
 	background-color: #d9d9d9;
-	border:1px solid;
+	/* border:1px solid; */
 	border-color: honeydew;
+	box-shadow: 3px 3px 3px #cbc0d3;
 }
 
 .page-container {
@@ -161,10 +169,6 @@
 
 .footer-text:hover {
 	text-decoration: underline;
-}
-
-.logo {
-	color: #ff5d8f;
 }
 
 ::placeholder {
@@ -236,4 +240,14 @@ font-weight: 300;
 color: #e5989b;
 font-style: italic;
 font-size: 85%;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+	}
 }
