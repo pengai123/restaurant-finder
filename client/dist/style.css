@@ -42,6 +42,7 @@
 
 .root {
 	background-image: url("https://image.freepik.com/free-photo/empty-wooden-table-top-with-blurred-coffee-shop_7188-1337.jpg");
+	/* background-image: linear-gradient(to bottom right, #f94144, #9b5de5); */
 	display: grid;
 	grid-auto-flow: row;
 	grid-gap: 1em;
@@ -63,18 +64,22 @@
 	margin: 5px;
 	height: 40px;
 	width: 60%;
-	padding-left: 1em;
+	padding-left: 1rem;
 	font-weight: bold;
 	border-radius: 5px;
 }
 
 .form-btn {
 	margin: 5px;
+	width: 64%;
 	border-radius: 5px;
 	padding: 10px 20px;
 	font-weight: 700;
+	background-color: #cddafd;
 }
-
+.form-btn:hover {
+	background-color: #dfe7fd;
+}
 .form-msg  {
 	font-weight: bold;
 	font-size: small;

@@ -386,6 +386,12 @@ export default function Navbar(props) {
 				style={{
 					content: {
 						background: "#FFF4EC",
+						// width: "50%",
+						// height: "50%",
+						// top: "50%",
+						// left: "50%",
+						// transform: "translate(-50%, -50%)"
+						// backgroundImage: "linear-gradient(to bottom right, #f94144, #9b5de5)",
 						top: '10%',
 						left: '30%',
 						right: '30%',
